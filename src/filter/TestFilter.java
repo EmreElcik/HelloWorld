@@ -1,6 +1,7 @@
 package filter;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,10 +12,18 @@ import javax.servlet.ServletResponse;
 public class TestFilter implements Filter{
 
 	@Override
-	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		System.out.println("HI ALL");
+		// TAuto-generated method stub
+		
+		PrintWriter out = resp.getWriter();
+		System.out.println("Filter is invoked before");
+		
+		chain.doFilter(req, resp);
+		
+		System.out.println("Filter is invoked after");
+		
 	}
 
+	
 }

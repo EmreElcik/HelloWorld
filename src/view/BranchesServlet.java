@@ -35,8 +35,15 @@ public class BranchesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		BranchesController bc = new BranchesController();
-		List<Branches> liste = bc.getAll();
 		
+		String process = request.getParameter("process");
+		String branchId = request.getParameter("branchIdParam");
+		
+		if ("delete".equals(process)) {
+			bc.deleteBranchesByBranchId(Integer.valueOf(branchId));
+		}
+		
+		List<Branches> liste = bc.getAll();
 		PrintWriter out = response.getWriter();
 		
 		out.println("<html>"
@@ -46,6 +53,7 @@ public class BranchesServlet extends HttpServlet {
 				+ "<tr>"
 				+ "<td> BranchId </td>"
 				+ "<td> BranchName </td>"
+				+ "<td> OP </td>"
 				+ "</tr>");
 		for (Branches b : liste) {
 			/**out.println(b.getBranchId());
@@ -57,7 +65,26 @@ public class BranchesServlet extends HttpServlet {
 					+ "</td>"
 					+ "<td>"
 					+ b.getBranchName()
-					+ "</td>"					
+					+ "</td>"
+					+ "<td>"
+						+ "<table>"
+						+ "<tr>"
+						+ "<td align=\"left\">"
+						+"<form method=\"GET\" action=\"http://localhost:8080/HelloWorld/UpdateBranchServlet\">"
+						+ "<input type=\"hidden\" name=\"branchIdParam\" value=\""+b.getBranchId()+"\">" 
+						+ "<input type=\"submit\" value=\"U\">" 
+						+ "</form>"
+						+ "</td>"
+						+ "<td align=\"right\">"
+						+"<form method=\"POST\" action=\"http://localhost:8080/HelloWorld/BranchesServlet\">"
+						+ "<input type=\"hidden\" name=\"branchIdParam\" value=\""+b.getBranchId()+"\">"
+						+ "<input type=\"hidden\" name=\"process\" value=\"delete\">"
+						+ "<input type=\"submit\" value=\"D\">" 
+						+ "</form>"
+						+ "</td>"
+						+ "</tr>"
+						+ "</table>"
+					+ "</td>"						
 					+ "</tr>");
 		}
 		
@@ -71,7 +98,10 @@ public class BranchesServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String branchIdParam = request.getParameter("branchIdParam");
+		System.out.println(branchIdParam);
 		doGet(request, response);
+		
 	}
 
 }

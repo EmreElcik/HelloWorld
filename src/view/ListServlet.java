@@ -38,6 +38,8 @@ public class ListServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
+		out.println("doGet-ListServlet");
+		
 		out.println("<html>"
 				+"<body bgcolor=\"#C0C0C0\">"
 				+ "<a href='AddBranchServlet'><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfSQlnchZxsuNAbPKhA8wXukAPB6ANIoHLttHFmBGhbFQzQvSy'/></a>"
@@ -48,8 +50,8 @@ public class ListServlet extends HttpServlet {
 				+ "<td> Op </td>"
 				+ "</tr>");
 		for (Branches b : liste) {
-			/**out.println(b.getBranchId());
-			out.println(b.getBranchName());*/
+			out.println(b.getBranchId());
+			out.println(b.getBranchName());
 			
 			out.println("<tr>"
 					+ "<td>"
@@ -74,7 +76,11 @@ public class ListServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	PrintWriter out = response.getWriter();
+		
+		out.println("doGet-ListServlet");
 		doGet(request, response);
+		
 	}
 
 }
