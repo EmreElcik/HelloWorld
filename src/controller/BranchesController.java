@@ -32,7 +32,7 @@ public class BranchesController {
 		Branches branchExist = new Branches();
 		branchExist = model.getBranchesByBranchId(branches.getBranchId());
 		
-		if (branchExist != null || branchExist.getBranchId() != 0 ) {
+		if (branchExist.getBranchId() != 0 ) {
 			throw new Exception("Var Olan Branch Id tekrar girilemez!");
 		}
 		
