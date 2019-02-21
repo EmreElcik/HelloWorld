@@ -48,7 +48,8 @@ public class BranchesServlet extends HttpServlet {
 		
 		out.println("<html>"
 				+"<body bgcolor=\"#C0C0C0\">"
-				+ "<a href='AddBranchServlet'><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfSQlnchZxsuNAbPKhA8wXukAPB6ANIoHLttHFmBGhbFQzQvSy'/></a>"
+				+ "<a href='AddBranchServlet'><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfSQlnchZxsuNAbPKhA8wXukAPB6ANIoHLttHFmBGhbFQzQvSy'  height=\"45\" width=\"45\"/> Ekle </a>"
+				+ " <link rel=\"icon\" href=\"favicon.png\" sizes=\"16x16\" type=\"image/png\"> "
 				+ "<table align=\"center\" border=\"1\" style=\"width:80%\"> "
 				+ "<tr>"
 				+ "<td> BranchId </td>"

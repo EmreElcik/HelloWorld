@@ -1,10 +1,12 @@
 package controller;
 
 import model.BranchesModel;
+import sun.security.util.Length;
 import entity.*;
 import java.util.*;
 
 public class BranchesController {
+	
 	
 	public Branches getBranchesByBranchId(Integer pbranchId) {
 
@@ -32,7 +34,13 @@ public class BranchesController {
 		branchExist = model.getBranchesByBranchId(branches.getBranchId());
 		
 		if (branchExist == null || branchExist.getBranchId() == 0 ) {
-			model.saveBranch(branches);	
+		
+			if ( String.valueOf(branches.getBranchId()).length() <= 10 && branches.getBranchName().length() <= 50 ) {
+				model.saveBranch(branches);					
+			}else { 
+				throw new Exception("BranchId Max 10 - BranchName Max 50 karakter olabilir! Lütfen düzeltiniz.");
+			}
+
 		} else { 
 			throw new Exception("Var Olan Branch Id tekrar girilemez!");
 			
@@ -40,8 +48,16 @@ public class BranchesController {
 		
 	}
 
-	public void updateBranch(Branches branches) {
+	public void updateBranch(Branches branches) throws Exception{
 		BranchesModel model = new BranchesModel();
+
+		if ( String.valueOf(branches.getBranchId()).length() <= 10 && branches.getBranchName().length() <= 50 ) {
+			model.saveBranch(branches);					
+		}else { 
+			throw new Exception("BranchId Max 10 - BranchName Max 50 karakter olabilir! Lütfen düzeltiniz.");
+		}
+		
+		
 		model.updateBranch(branches);
 	}
 	
