@@ -113,7 +113,7 @@ public class BranchesModel {
 		
 	}
 
-	public void saveBranch(Branches branches) {
+	public int saveBranch(Branches branches) {
 		
 		String sql = "Insert into eelcik.koc_oc_branches(BRANCH_ID, BRANCH_NAME, BRANCH_SHORT_NAME)"
 				+ " Values(?, ?, ?)";
@@ -130,17 +130,19 @@ public class BranchesModel {
 			ps.setInt(1, branches.getBranchId());
 			ps.setString(2, branches.getBranchName());
 			ps.setString(3, branches.getBranchShortName());
-			ps.executeUpdate();
+			return ps.executeUpdate();
 			//ps.execute(sql);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
+		return 2;
+		
 		
 	}
 	
-	public void updateBranch(Branches branches) {
+	public int updateBranch(Branches branches) {
 		
 		String sql = " update eelcik.koc_oc_branches"
 				+ " set BRANCH_NAME = ?"
@@ -157,12 +159,14 @@ public class BranchesModel {
 		{
 			ps.setInt(2, branches.getBranchId());
 			ps.setString(1, branches.getBranchName());
-			ps.executeUpdate();
+			return ps.executeUpdate();
 			//ps.execute(sql);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		return 2;
 		
 		
 	}	
